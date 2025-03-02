@@ -131,16 +131,20 @@ Baby Naptime is composed of several specialized components that work together:
 
 ## 📊 Output
 
-Results are stored in the `results/` directory with the following structure:
+The tool generates a concise, technical summary report of any discovered vulnerabilities:
 
 ```
 results/
-├── [timestamp]_[filename]/
-│   ├── vulnerability_report.md
-│   ├── exploitation.py
-│   ├── technical_findings.json
-│   └── debug_logs/
+└── [filename]_summary.md
 ```
+
+The summary report is a comprehensive one-page markdown document that includes:
+
+- Executive summary of the vulnerability
+- Technical analysis of the vulnerable code
+- Detailed exploitation methodology
+- Working payload and commands used
+- Proof of successful exploitation
 
 ## 🤝 Contributing
 
