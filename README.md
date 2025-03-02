@@ -176,6 +176,8 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 Baby Naptime is intended for **educational and research purposes only**. Always obtain proper authorization before testing any system for vulnerabilities. The authors are not responsible for any misuse of this tool.
 
+I am not affiliated with Google or Project Zero in any way. This is an independent project inspired by their excellent research work which I attempted to replicate as a learning exercise.
+
 ## 🙏 Acknowledgments
 
 - Inspired by [Google's Project Naptime](https://googleprojectzero.blogspot.com/2024/06/project-naptime.html) by Project Zero researchers
