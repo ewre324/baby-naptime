@@ -1,3 +1,5 @@
+![Logo](demo/logo.png)
+
 # 🍼 Baby Naptime
 
 > *Find vulnerabilities while you sleep!*
