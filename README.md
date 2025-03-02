@@ -1,4 +1,4 @@
-![Logo](demo/logo.png)
+<img src="demo/logo.png" width="500">
 
 # 🍼 Baby Naptime
 
