@@ -2,7 +2,7 @@
 
 > *Find vulnerabilities while the baby sleeps!*
 
-An open source implementation inspired by Google's Project Naptime - a powerful vulnerability analysis tool that uses Large Language Models (LLMs) to discover and exploit native vulnerabilities.
+An open source implementation inspired by [Google's Project Naptime](https://googleprojectzero.blogspot.com/2024/06/project-naptime.html) - a powerful vulnerability analysis tool that uses Large Language Models (LLMs) to discover and exploit native vulnerabilities.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)
@@ -168,7 +168,8 @@ Baby Naptime is intended for **educational and research purposes only**. Always 
 
 ## 🙏 Acknowledgments
 
-- Inspired by Google's Project Naptime
+- Inspired by [Google's Project Naptime](https://googleprojectzero.blogspot.com/2024/06/project-naptime.html) by Project Zero researchers
+- Project Naptime achieved impressive results on the CyberSecEval2 benchmark, improving scores by up to 20x
 - Thanks to the open source security community
 - All the security researchers who share knowledge freely
 
