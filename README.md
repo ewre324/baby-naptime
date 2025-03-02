@@ -50,10 +50,8 @@ cd baby-naptime
 # Install dependencies
 pip install -r requirements.txt
 
-# Set up your API key (supports OpenAI and Anthropic)
+# Set up your API key (supports OpenAI)
 export OPENAI_API_KEY='your-openai-key-here'
-# OR
-export ANTHROPIC_API_KEY='your-anthropic-key-here'
 
 # Install required system dependencies
 sudo apt-get install gdb g++ colorama
