@@ -154,8 +154,6 @@ We welcome contributions from the security community! To contribute:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-See our [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
-
 ## 📜 License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
@@ -167,10 +165,10 @@ Baby Naptime is intended for **educational and research purposes only**. Always 
 ## 🙏 Acknowledgments
 
 - Inspired by [Google's Project Naptime](https://googleprojectzero.blogspot.com/2024/06/project-naptime.html) by Project Zero researchers
-- Project Naptime achieved impressive results on the CyberSecEval2 benchmark, improving scores by up to 20x
+- Project Naptime achieved impressive results on the [CyberSecEval2](https://github.com/meta-llama/PurpleLlama) benchmark, improving scores by up to 20x
 - Thanks to the open source security community
 - All the security researchers who share knowledge freely
 
 ---
 
-<p align="center">Made with ❤️ by security researchers who believe in automation for good</p>
+<p align="center">Made with ❤️ by Faizan</p>
