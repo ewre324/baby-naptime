@@ -79,7 +79,7 @@ python run.py -c <code_file> [options]
 ### Example
 
 ```bash
-# Analyze a C++ file using Claude o3-mini model
+# Analyze a C++ file using Openai's o3-mini model
 python run.py -c code/test.cpp -l o3-mini -k 15
 ```
 
@@ -118,7 +118,7 @@ Baby Naptime is composed of several specialized components that work together:
 
 - **BabyNaptime**: Main class that initializes and coordinates all components
 - **Agent**: Orchestrates the analysis workflow, maintains LLM conversation, and manages binary compilation
-- **LLM**: Interface to language models (supports GPT and Claude models)
+- **LLM**: Interface to language models (supports GPT models for now)
 - **Caller**: Routes tool commands to appropriate handlers
 - **Summarizer**: Condenses conversation history to maintain context within token limits
 - **Reporter**: Generates comprehensive vulnerability reports with evidence
