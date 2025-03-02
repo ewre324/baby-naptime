@@ -1,4 +1,6 @@
-<img src="demo/logo.png" width="500">
+<p align="center">
+  <img src="demo/logo.png" width="500">
+</p>
 
 # 🍼 Baby Naptime
 
