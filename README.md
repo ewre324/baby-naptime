@@ -10,6 +10,7 @@ A very simple and basic open source implementation inspired by [Google's Project
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)
+![Ubuntu Only](https://img.shields.io/badge/platform-ubuntu-orange)
 ![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-red)
 
 ![Demo](demo/demo.gif)
