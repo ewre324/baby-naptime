@@ -144,6 +144,17 @@ The summary report is a comprehensive one-page markdown document that includes:
 - Working payload and commands used
 - Proof of successful exploitation
 
+## 📋 TODOs
+
+- [ ] Add support for Anthropic Claude models
+- [ ] Improve code navigation for large codebases
+- [ ] Enhance debugging with ASAN/Valgrind integration
+- [ ] Add support for binary-only targets
+- [ ] Integrate with IDA/Ghidra APIs
+- [ ] Implement multi-step planning and reasoning
+- [ ] Test against a large open source codebase
+- [x] ~~Add basic documentation and examples~~
+
 ## 🤝 Contributing
 
 We welcome contributions from the security community! To contribute:
