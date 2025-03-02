@@ -27,6 +27,8 @@ Baby Naptime leverages the intelligence of LLMs to revolutionize security analys
 | 🔬 **Advanced Debugging** | GDB integration with security-focused analysis capabilities |
 | 🧭 **Code Navigation** | Smart traversal of codebases to focus on vulnerability-prone areas |
 | 📝 **Reporting** | Detailed vulnerability reports with exploitation paths and remediation suggestions |
+| 📊 **Conversation Summarization** | Smart management of context history to maintain analysis quality |
+| 🔄 **Adaptive Binary Compilation** | Automatically compiles targets with security mitigations disabled for testing |
 
 ## 📋 Requirements
 
@@ -48,8 +50,13 @@ cd baby-naptime
 # Install dependencies
 pip install -r requirements.txt
 
-# Set up your OpenAI API key
-export OPENAI_API_KEY='your-api-key-here'
+# Set up your API key (supports OpenAI and Anthropic)
+export OPENAI_API_KEY='your-openai-key-here'
+# OR
+export ANTHROPIC_API_KEY='your-anthropic-key-here'
+
+# Install required system dependencies
+sudo apt-get install gdb g++ colorama
 ```
 
 ### Usage
@@ -79,32 +86,48 @@ python run.py -c code/test.cpp -l o3-mini -k 15
 ```
 
 This command will:
-1. Load and parse `test.cpp`
-2. Use the o3-mini model for vulnerability analysis
-3. Maintain a context history of 15 items
-4. Generate detailed reports of any findings
+1. Load and parse `test.cpp` 
+2. Compile the code with security mitigations disabled (`-fno-stack-protector -z execstack -no-pie`)
+3. Use the o3-mini model for vulnerability analysis
+4. Maintain a context history of 15 conversation items
+5. Generate detailed reports if vulnerabilities are found
 
 ## 🏗️ Architecture
 
 Baby Naptime is composed of several specialized components that work together:
 
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│    Agent    │────▶│ Code Browser│────▶│   Debugger  │
-└─────┬───────┘     └─────────────┘     └─────────────┘
-      │                                         ▲
-      ▼                                         │
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Reporter  │◀────│  Scripter   │◀────│  Summarizer │
-└─────────────┘     └─────────────┘     └─────────────┘
+                      ┌───────────────┐
+                      │  BabyNaptime  │
+                      └───────┬───────┘
+                              │
+                              ▼
+┌───────────┐           ┌───────────┐           ┌───────────┐
+│    LLM    │◀─────────▶│   Agent   │─────────▶│   Caller  │
+└───────────┘           └─────┬─────┘           └───────────┘
+                              │                        │
+                              │                        ▼
+┌───────────┐           ┌─────┴─────┐           ┌───────────┐
+│  Reporter │◀──────────│ Summarizer│           │ Tool APIs │
+└───────────┘           └───────────┘           └───────────┘
+                                                      │
+                              ┌─────────────────┬─────┴─────┬─────────────────┐
+                              ▼                 ▼           ▼                 ▼
+                        ┌───────────┐    ┌───────────┐┌───────────┐    ┌───────────┐
+                        │CodeBrowser│    │  Debugger ││ScriptRunner│    │   Utils   │
+                        └───────────┘    └───────────┘└───────────┘    └───────────┘
 ```
 
-- **Agent**: Orchestrates the analysis workflow and manages LLM conversations
-- **Code Browser**: Intelligently navigates code and extracts relevant segments
+- **BabyNaptime**: Main class that initializes and coordinates all components
+- **Agent**: Orchestrates the analysis workflow, maintains LLM conversation, and manages binary compilation
+- **LLM**: Interface to language models (supports GPT and Claude models)
+- **Caller**: Routes tool commands to appropriate handlers
+- **Summarizer**: Condenses conversation history to maintain context within token limits
+- **Reporter**: Generates comprehensive vulnerability reports with evidence
+- **CodeBrowser**: Intelligently navigates code and extracts relevant segments
 - **Debugger**: Provides GDB-based debugging with security analysis capabilities
-- **Reporter**: Creates comprehensive vulnerability reports with evidence
-- **Scripter**: Executes dynamic testing scripts to validate findings
-- **Summarizer**: Maintains context efficiency by condensing conversation history
+- **ScriptRunner**: Executes dynamic testing scripts to validate findings
+- **Utils**: Shared utility functions including token counting and formatting
 
 ## 📊 Output
 
