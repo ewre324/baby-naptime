@@ -2,7 +2,7 @@
 
 > *Find vulnerabilities while you sleep!*
 
-An open source implementation inspired by [Google's Project Naptime](https://googleprojectzero.blogspot.com/2024/06/project-naptime.html) - a powerful vulnerability analysis tool that uses Large Language Models (LLMs) to discover and exploit native vulnerabilities.
+A very simple and basic open source implementation inspired by [Google's Project Naptime](https://googleprojectzero.blogspot.com/2024/06/project-naptime.html) - a powerful vulnerability analysis tool that uses Large Language Models (LLMs) to discover and exploit native vulnerabilities.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)
