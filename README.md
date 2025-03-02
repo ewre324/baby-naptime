@@ -179,6 +179,7 @@ Baby Naptime is intended for **educational and research purposes only**. Always 
 - Project Naptime achieved impressive results on the [CyberSecEval2](https://github.com/meta-llama/PurpleLlama) benchmark, improving scores by up to 20x
 - Thanks to the open source security community
 - All the security researchers who share knowledge freely
+- Claude Sonnet 3.7 who helped write a lot of the code and documentation.
 
 ---
 
