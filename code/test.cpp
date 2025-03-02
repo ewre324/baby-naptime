@@ -9,7 +9,6 @@
 #include <string.h>
 #include <fstream>
 #include <iostream>
-#include <optional>
 #include <sstream>
 #include <unordered_map>
 
@@ -17,62 +16,30 @@
 
 SE_GLOBALS()
 
-class StateMachine {
-  uint32_t state;
-  std::unordered_map<uint32_t, std::unordered_map<char, uint32_t>> transitions;
-  std::unordered_map<uint32_t, std::string> names;
-
- public:
-  bool valid;
-
-  StateMachine() : state(0), valid(true) {}
-  void make_transition(uint32_t state, char input, uint32_t next_state) {
-    transitions[state][input] = next_state;
-  }
-  void make_name(uint32_t state, std::string val) {
-    names[state] = val;
-  }
-
-  std::optional<std::string> step(char x) {
-    if (!valid) {
-      return std::nullopt;
-    }
-    auto table = transitions.find(state);
-    if (table == transitions.end()) {
-      valid = false;
-      return std::nullopt;
-    }
-    SE_STEP(true);
-    auto new_state = table->second.find(x);
-    if (new_state == table->second.end()) {
-      valid = false;
-      return std::nullopt;
-    }
-    SE_STEP(true);
-    state = new_state->second;
-    if (names.find(state) != names.end()) {
-      SE_STEP(true);
-      return names[state];
-    }
-    return std::nullopt;
-  }
-};
-
 void test_case(std::string str) {
-  std::optional<std::string> state = std::nullopt;
-  StateMachine machine;
-  machine.make_transition(0, 'a', 1);
-  machine.make_transition(1, 'b', 2);
-  machine.make_transition(2, 'c', 3);
-  machine.make_name(3, "final");
-  for (char c : str) {
-    state = machine.step(c);
-    if (!machine.valid) {
-      break;
+  std::istringstream stream(str);
+  std::unordered_map<std::string, std::string> map;
+  std::string line;
+  while (std::getline(stream, line)) {
+    std::istringstream lineStream(line);
+    std::string key;
+    std::string value;
+    std::getline(lineStream, key, ':');
+    std::getline(lineStream, value);
+    if (key.size() == 0 || value.size() == 0) {
+      return;
     }
+    map[key] = value;
+    SE_STEP(true /*if we made it here, we solved one problem*/);
   }
-  if (state.has_value()) {
-    SE_TARGET_STATE((*state == "final"));
+  if (map.size() == 0) {
+    return;
+  }
+  SE_STEP(true /*if we made it here, we solved one problem*/);
+  auto it = map.find("fnord");
+  if (it != map.end()) {
+    SE_STEP(true /*if we made it here, we solved one problem*/);
+    SE_TARGET_STATE((it->second == "1337"));
   }
 }
 

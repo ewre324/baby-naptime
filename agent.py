@@ -87,7 +87,7 @@ class Agent:
             
             output = os.path.join(directory, base) if directory else base
                 
-            os.system(f"g++ -std=c++17 -g {self.file} -o {output} -fno-stack-protector -z execstack -no-pie")
+            os.system(f"g++ -std=c++17 -g {self.file} -o {output} -fno-stack-protector -z execstack -no-pie -w")
             return output
         except Exception as e:
             logger.error(f"Error compiling binary: {e}")
@@ -116,11 +116,7 @@ class Agent:
                 first_messages = self.history[:keep_beginning]
                 last_messages = self.history[-keep_ending:]
                 middle_messages = self.history[keep_beginning:-keep_ending]
-                
-                logger.info(f"{Fore.WHITE}History length: {len(self.history)}, summarizing {len(middle_messages)} messages...")
                 summary = Summarizer(self.llm_model).summarize_conversation(middle_messages)
-                logger.info(f"{Fore.WHITE}Summary of middle content: {summary}")
-                
                 self.history = first_messages + [
                     {"role": "assistant", "content": f"[SUMMARY OF PREVIOUS CONVERSATION: {summary}]"}
                 ] + last_messages

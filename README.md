@@ -8,6 +8,9 @@ A very simple and basic open source implementation inspired by [Google's Project
 ![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)
 ![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-red)
 
+![Demo](demo/demo.gif)
+
+
 ## 🔍 Overview
 
 Baby Naptime leverages the intelligence of LLMs to revolutionize security analysis:
