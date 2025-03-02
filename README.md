@@ -1,6 +1,6 @@
 # 🍼 Baby Naptime
 
-> *Find vulnerabilities while the baby sleeps!*
+> *Find vulnerabilities while you sleep!*
 
 An open source implementation inspired by [Google's Project Naptime](https://googleprojectzero.blogspot.com/2024/06/project-naptime.html) - a powerful vulnerability analysis tool that uses Large Language Models (LLMs) to discover and exploit native vulnerabilities.
 
