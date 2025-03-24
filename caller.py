@@ -7,7 +7,7 @@ from utils import sanitize_command
 from logger import logger
 from colorama import Fore, Style, init
 from typing import Dict, Optional, Any
-
+from radare2 import R2
 class Caller:
     """
     A class that handles tool execution and command routing.
@@ -35,7 +35,7 @@ class Caller:
         self.code_browser = CodeBrowser()
         self.script_runner = ScriptRunner(llm_model)
         self.debugger = Debugger()
-  
+        self.r2 = R2()
     def call_tool(self, tool_call_command: str) -> Any:
         """
         Execute a tool command and return its output.
@@ -65,6 +65,10 @@ class Caller:
             """Execute debugger at specified location."""
             return self.debugger.debug(filename, line_number, exprs, input_vars)
 
+        def r2(filename: str, commands: str|list[str], output_format = 'text') -> str:
+            """Execute radare2 with specified analysis."""
+            return self.r2.execute(filename,commands,output_format)
+        
         def run_script(script_code: str) -> str:
             """Execute a script against target file."""
             return self.script_runner.run_script(self.file, script_code)
@@ -89,7 +93,8 @@ class Caller:
             "debugger": debugger, 
             "run_script": run_script,
             "exploit_successful": exploit_successful,
-            "bash_shell": bash_shell
+            "bash_shell": bash_shell,
+            "radare2":r2
         }
 
         # Execute command in controlled environment

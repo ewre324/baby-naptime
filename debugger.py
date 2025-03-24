@@ -11,14 +11,24 @@ class Debugger:
         except (subprocess.CalledProcessError, FileNotFoundError):
             raise RuntimeError("GDB not found")
 
+    def is_binary_by_extension(self,file_path)-> bool:
+        TEXT_EXTENSIONS = {'.c', '.cpp', '.py', '.java', '.txt', '.h'}
+        return os.path.splitext(file_path)[1].lower() not in TEXT_EXTENSIONS
+    
     def _create_gdb_script(self, file: str, line: int, exprs: str) -> str:
         """Create GDB script focused on CTF-relevant information."""
         expressions = [e.strip() for e in exprs.split(',')]
         
+        if self.is_binary_by_extension(file):
+            break_cmd = f"break *{line}"  # 地址前加*
+        else:
+            break_cmd = f"break {line}"
+
+
         script = f"""
         set verbose off
         file {file}
-        break {line}
+        {break_cmd}
         run
         
         # Function layout
@@ -27,7 +37,7 @@ class Debugger:
         
         # Stack & heap info
         printf "\\n=== MEMORY LAYOUT ===\\n"
-        info proc mappings
+        #info proc mappings
         printf "\\nStack pointer: "
         print/x $sp
         printf "Base pointer: "
@@ -57,9 +67,9 @@ class Debugger:
         script += """
         # Check for common CTF gadgets
         printf "\\n=== USEFUL GADGETS ===\\n"
-        find $pc,+2000,"/bin/sh"
-        find $pc,+2000,"flag"
-        find $pc,+2000,"system"
+        find $pc,+1000,"/bin/sh"
+        find $pc,+1000,"flag"
+        find $pc,+1000,"system"
         
         # Look for writable sections
         printf "\\n=== WRITABLE SECTIONS ===\\n"
@@ -112,8 +122,11 @@ class Debugger:
         """
         if not os.path.exists(file):
             raise FileNotFoundError(f"File not found: {file}")
-
-        binary = self._compile_with_protections(file, lang)
+        if self.is_binary_by_extension(file):
+            binary = file
+        else:
+            binary = self._compile_with_protections(file, lang)
+        
         script = self._create_gdb_script(binary, line, exprs)
 
         input_str = ''
@@ -143,6 +156,13 @@ class Debugger:
 
         finally:
             os.remove(script)
-            if os.path.exists(binary):
-                os.remove(binary)
+           # if os.path.exists(binary):
+             #   os.remove(binary)
+'''
+if __name__ == "__main__":
+    debugger = Debugger()
+    de=debugger.debug("code/vuln_server",0x0040127a,"buffer, sockfd")
 
+    
+    print(de)  # 输出前500字符'
+'''

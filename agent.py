@@ -30,7 +30,7 @@ class Agent:
         SYSTEM_PROMPT: System prompt template for the LLM
     """
 
-    def __init__(self, file: str, initial_data: str, llm_model: str = "o3-mini", keep_history: int = 10):
+    def __init__(self, file: str, initial_data: str,is_binary: bool, llm_model: str = "o3-mini", keep_history: int = 10, ):
         """
         Initialize the agent.
 
@@ -43,7 +43,11 @@ class Agent:
         self.llm = LLM(llm_model)
         self.file = file
         self.llm_model = llm_model
-        self.binary_path = self.build_binary()
+        self.is_binary = is_binary
+        if self.is_binary:
+            self.binary_path = self.file
+        else:
+            self.binary_path = self.build_binary()
         logger.info(f"{Fore.GREEN}Binary path: {self.binary_path}")
 
         self.keep_history = keep_history
@@ -106,8 +110,9 @@ class Agent:
             messages = [{"role": "system", "content": self.SYSTEM_PROMPT}]
 
             # Rebuild binary in case it was deleted
-            self.build_binary()
-
+            if not self.is_binary:
+                self.build_binary()
+            
             # Manage conversation history
             if len(self.history) > self.keep_history:
                 keep_beginning = 4

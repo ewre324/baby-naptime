@@ -41,6 +41,7 @@ class BabyNaptime:
             main_function: Entry function to begin analysis (default: main)
         """
         self.code_file = code_file
+        self.is_binary = False
         self.max_iterations = max_iterations
         self.llm_model = llm_model
         self.keep_history = keep_history
@@ -50,17 +51,38 @@ class BabyNaptime:
         if not os.path.exists(code_file):
             raise FileNotFoundError(f"Source file not found: {code_file}")
             
-        self.file_contents = open(self.code_file, 'r').read()
+        # self.file_contents = open(self.code_file, 'r').read()
+        if not self.is_binary_file(code_file):
+            logger.info(f"Reading source file: {code_file}")
+            self.file_contents = open(self.code_file, 'r').read()
+            self.is_binary = False
+        else:
+            logger.warning(f"Skipping text read for binary file: {code_file}")
+            self.file_contents = "the path of binary file is"+self.code_file
+            self.is_binary = True
 
+    def is_binary_file(self, file_path):
+        """Check if the given file is a binary file by checking for null bytes."""
+        try:
+            with open(file_path, 'rb') as f:
+                data = f.read(1024)
+                return b'\x00' in data
+        except Exception as e:
+            logger.error(f"Error checking file type: {e}")
+            return False
+        
     def run(self):
         """Run the vulnerability analysis on the target code."""
         # Get entry function
-        function_body = self.code_browser.get_function_body(
-            self.code_file, 
-            self.main_function
-        )['source']
+        if not self.is_binary:
+            function_body = self.code_browser.get_function_body(
+                self.code_file, 
+                self.main_function
+            )['source']
+        else:
+            function_body = "the path of binary file is"+self.code_file
         
-        self.agent = Agent(self.code_file, function_body, llm_model=self.llm_model, keep_history=self.keep_history)
+        self.agent = Agent(self.code_file, function_body, self.is_binary,llm_model=self.llm_model, keep_history=self.keep_history)
         logger.info(f"{Fore.WHITE}Starting code analysis...{Style.RESET_ALL}")
         self.agent.run()
         
@@ -121,7 +143,7 @@ def main():
 
     # Check if code file exists
     if not os.path.exists(args.code_file):
-        logger.error(f"Source code file not found: {args.code_file}")
+        logger.error(f"File not found: {args.code_file}")
         return 1
 
     # Check if code directory exists

@@ -38,7 +38,7 @@ SYSTEM_PROMPT = """
         3. Script Runner
         Description: Executes custom Python scripts for testing and exploitation
         Usage: run_script(script_code: str) 
-        - script_code: Python code to execute
+        - script_code: Python code to execute,using \n to separate each line, and also include the corresponding import headers.
         - Returns: Script output
         Note: If you want the binary, its situated in {binary_path}. The source file is located in {file}
         * Important: If you want to run the script, just write Command: run_script(`write exploit code here line by line`)
@@ -51,6 +51,14 @@ SYSTEM_PROMPT = """
 
         5. Successful Exploit.
         Description: If you have found a successful exploit and crashed the program or gained root access, call exploit_successful(). You cannot return this unless you have actually run the exploit against the binary and observed the crash or root access.
+
+        6.Radare2
+        Description: Provides deep static/dynamic analysis of binary files, supporting disassembly, memory inspection, breakpoint debugging, and vulnerability discovery. Directly execute radare2 commands for flexible analysis.
+        Usage: radare2(filename: str, commands: str, output_format = 'text')
+        - filename: Path to the binary file to analysize
+        - commands: Radare2 command sequence to execute
+        - output_format: Output format is always text
+
 
         INSTRUCTIONS
         - For every output, first describe where we are, what have we done till now, what data have we seen. Then whatever tool you are going to call, write it down in the message. Only suggest one command per output, operations are atomic, we can't run two commands at once.

@@ -57,4 +57,11 @@ class ScriptRunner:
         except Exception as e:
             print(f"Error running script: {e}")
             return f"Error running script: {e}"
+'''
+if __name__ == "__main__":
+    debugger = ScriptRunner()
+    de=debugger.run_script("code/vuln","padding = b'A' * 40 \nmain_address = p64(0x00000000000011ca) payload = padding + main_address print(payload)")
 
+    
+    print(de)  # 输出前500字符
+'''
