@@ -2,7 +2,7 @@
   <img src="demo/logo.png" width="500">
 </p>
 
-# 🍼 Baby Naptime
+# 🍼 Baby Naptime [OLLAMA SUPPORT]
 
 > *Find vulnerabilities while you sleep!*
 
@@ -40,6 +40,7 @@ Baby Naptime leverages the intelligence of LLMs to revolutionize security analys
 
 ## 📋 Requirements
 
+- **Ollama installed, model downloaded and Python binding installed**
 - Python 3.7 or higher
 - GDB debugger
 - C/C++ compiler (g++)
@@ -58,8 +59,9 @@ cd baby-naptime
 # Install dependencies
 pip install -r requirements.txt
 
-# Set up your API key (supports OpenAI)
-export OPENAI_API_KEY='your-openai-key-here'
+# NO API KEY REQUIRED
+# TOTALLY OFFLINE USES OLLAMA
+
 
 # Install required system dependencies
 sudo apt-get install gdb g++ colorama
@@ -192,5 +194,5 @@ I am not affiliated with Google or Project Zero in any way. This is an independe
 - Claude Sonnet 3.7 which helped write a lot of the code and documentation.
 
 ---
-
-<p align="center">Made with ❤️ by Faizan</p>
+Original repo https://github.com/faizann24/baby-naptime/
+<p align="center">Ollama Support ❤️ by ewre324</p>
