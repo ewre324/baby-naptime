@@ -52,7 +52,7 @@ Baby Naptime leverages the intelligence of LLMs to revolutionize security analys
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/baby-naptime.git
+git clone https://github.com/ewre324/baby-naptime.git
 cd baby-naptime
 
 # Install dependencies
