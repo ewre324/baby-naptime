@@ -134,7 +134,7 @@ class Agent:
             logger.info(f"{Fore.YELLOW}Tokens in context: ~{tokens:,}")
 
             # Get next action from LLM
-            response = self.llm.action(messages, temperature=0.3, reasoning="medium")
+            response = self.llm.action(messages, temperature=0.3)
             logger.info(f"{Fore.YELLOW}Plan: {response}")
             self.history.append({"role": "assistant", "content": response})
             

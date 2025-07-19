@@ -36,7 +36,7 @@ class ScriptRunner:
         {script_code}
 
         """
-        script_code = LLM(self.llm_model).prompt(prompt, reasoning="low")
+        script_code = LLM(self.llm_model).prompt(prompt)
 
         # Create temporary script file
         fd, script_path = tempfile.mkstemp(suffix='.py', dir=self.temp_dir)

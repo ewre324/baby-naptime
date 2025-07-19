@@ -117,8 +117,7 @@ def main():
     parser.add_argument(
         "--llm-model", "-l",
         help="LLM model to use for analysis",
-        default="o3-mini",
-        choices=["gpt-3.5-turbo", "gpt-4o", "gpt-4o-mini", "o3-mini", "o1-preview"]
+        default="llama3.3"        
     )
     
     parser.add_argument(
