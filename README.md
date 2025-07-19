@@ -90,7 +90,7 @@ python run.py -c <code_file> [options]
 
 ```bash
 # Analyze a C++ file using Openai's o3-mini model
-python run.py -c code/test.cpp -l o3-mini -k 15
+python3 run.py --code_file code/test.cpp --llm-model llama3
 ```
 
 This command will:
@@ -195,4 +195,4 @@ I am not affiliated with Google or Project Zero in any way. This is an independe
 
 ---
 Original repo https://github.com/faizann24/baby-naptime/
-<p align="center">Ollama Support ❤️ by ewre324</p>
+<p align="center">Ollama Support by ewre324</p>
