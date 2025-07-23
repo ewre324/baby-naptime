@@ -2,15 +2,14 @@
   <img src="demo/logo.png" width="500">
 </p>
 
-# 🍼 Baby Naptime [OLLAMA SUPPORT]
+#  Naptime [OLLAMA SUPPORT]
 
 > *Find vulnerabilities while you sleep!*
 
 A very simple and basic open source implementation inspired by [Google's Project Naptime](https://googleprojectzero.blogspot.com/2024/06/project-naptime.html) - a vulnerability analysis tool that uses Large Language Models (LLMs) to discover and exploit native vulnerabilities. This was a weekend project, so please expect some hacky stuff here and there.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)
-![Ubuntu Only](https://img.shields.io/badge/platform-ubuntu-orange)
+![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-red)
 
 ![Demo](demo/demo.gif)
@@ -41,10 +40,9 @@ Baby Naptime leverages the intelligence of LLMs to revolutionize security analys
 ## 📋 Requirements
 
 - **Ollama installed, model downloaded and Python binding installed**
-- Python 3.7 or higher
+- Python 3.10 or higher
 - GDB debugger
 - C/C++ compiler (g++)
-- OpenAI API key
 - Required Python packages (see `requirements.txt`)
 
 ## 🚀 Quick Start
