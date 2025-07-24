@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="demo/logo.png" width="500">
-</p>
 
 #  Naptime [OLLAMA SUPPORT]
 
@@ -192,5 +189,5 @@ I am not affiliated with Google or Project Zero in any way. This is an independe
 - Claude Sonnet 3.7 which helped write a lot of the code and documentation.
 
 ---
-Original repo https://github.com/faizann24/baby-naptime/
+
 <p align="center">Ollama Support by ewre324</p>
